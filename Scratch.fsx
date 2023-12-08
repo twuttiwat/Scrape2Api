@@ -77,36 +77,33 @@ let parse () =
                         | isDecimal, _ -> isDecimal)
     |> Seq.map toMaterial
 
-let firstMaterial = parse () |> Seq.head
+let materials = parse ()
 
 open Donald
-
-let sql = "
-    INSERT INTO material (code, description, unit, unit_price)
-    VALUES (@code, @description, @unit, @unit_price)
-    ON CONFLICT do UPDATE SET description = @description, unit = @unit, unit_price = @unit_price";
-
-
-// Strongly typed input parameters
-let param = [ 
-    "code", sqlString firstMaterial.Code
-    "description", sqlString firstMaterial.Description
-    "unit", sqlString firstMaterial.Unit
-    "unit_price", sqlDecimal firstMaterial.UnitPrice
-]
-
 open System.Data.SQLite
+
+let insertMaterial conn material = 
+
+    let sql = "
+        INSERT INTO material (code, description, unit, unit_price)
+        VALUES (@code, @description, @unit, @unit_price)
+        ON CONFLICT do UPDATE SET description = @description, unit = @unit, unit_price = @unit_price";
+
+
+    let param = [ 
+        "code", sqlString material.Code
+        "description", sqlString material.Description
+        "unit", sqlString material.Unit
+        "unit_price", sqlDecimal material.UnitPrice
+    ]
+
+    conn
+    |> Db.newCommand sql
+    |> Db.setParams param
+    |> Db.exec // unit
+
 
 let conn = new SQLiteConnection(@"Data Source=c:\temp\Scrape2Api\material.db;Version=3;New=true;")
 
-
-conn
-|> Db.newCommand sql
-|> Db.setParams param
-|> Db.exec // unit
-
-// Async
-conn
-|> Db.newCommand sql
-|> Db.setParams param
-|> Db.Async.exec // Task<unit>
+materials
+|> Seq.iter (insertMaterial conn)
