@@ -7,6 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9A274DDE-BD9
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Scraper", "src\Scraper\Scraper.fsproj", "{9BD371D7-E3DC-4606-BC9B-66AEA3A4958E}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Api", "src\Api\Api.fsproj", "{C34C1DE4-7F5B-4820-B0BB-F979F25F28A3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,8 +22,13 @@ Global
 		{9BD371D7-E3DC-4606-BC9B-66AEA3A4958E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9BD371D7-E3DC-4606-BC9B-66AEA3A4958E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9BD371D7-E3DC-4606-BC9B-66AEA3A4958E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C34C1DE4-7F5B-4820-B0BB-F979F25F28A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C34C1DE4-7F5B-4820-B0BB-F979F25F28A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C34C1DE4-7F5B-4820-B0BB-F979F25F28A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C34C1DE4-7F5B-4820-B0BB-F979F25F28A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{9BD371D7-E3DC-4606-BC9B-66AEA3A4958E} = {9A274DDE-BD99-444C-B1D4-062C42E94469}
+		{C34C1DE4-7F5B-4820-B0BB-F979F25F28A3} = {9A274DDE-BD99-444C-B1D4-062C42E94469}
 	EndGlobalSection
 EndGlobal
